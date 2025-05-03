@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import Logo from './Logo';
 
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
-  const { cart = [] } = useCart();
+  const { cartItems } = useCart();
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md z-50">
@@ -20,9 +20,9 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
               className="relative p-2 text-gray-600 dark:text-gray-300 hover:text-accent-500 dark:hover:text-accent-400 transition-colors"
             >
               <ShoppingCartIcon className="h-6 w-6" />
-              {cart && cart.length > 0 && (
+              {cartItems && cartItems.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-accent-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cart.length}
+                  {cartItems.length}
                 </span>
               )}
             </Link>

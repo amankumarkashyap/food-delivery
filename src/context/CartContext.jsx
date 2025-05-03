@@ -35,7 +35,7 @@ export const CartProvider = ({ children }) => {
       if (existingItem) {
         return prevCart.map(cartItem =>
           cartItem.id === item.id
-            ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         );
       }
@@ -65,13 +65,16 @@ export const CartProvider = ({ children }) => {
 
   const getCartTotal = () => {
     return cart.reduce((total, item) => {
-      const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
-      return total + price * (item.quantity || 1);
+      // Handle both string prices with currency symbols and number prices
+      const price = typeof item.price === 'string' 
+        ? parseFloat(item.price.replace(/[^0-9.-]+/g, ''))
+        : item.price;
+      return total + price * item.quantity;
     }, 0);
   };
 
   const value = {
-    cart,
+    cartItems: cart, // Rename to be more explicit
     addToCart,
     removeFromCart,
     updateQuantity,

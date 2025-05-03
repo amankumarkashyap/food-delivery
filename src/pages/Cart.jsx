@@ -45,7 +45,7 @@ const Cart = () => {
                   {item.name}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  ${item.price.toFixed(2)}
+                  ${typeof item.price === 'string' ? item.price : item.price.toFixed(2)}
                 </p>
               </div>
               <div className="flex items-center gap-2">
