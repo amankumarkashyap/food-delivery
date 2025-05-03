@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-accent-500: #FF4D4D;
+  --color-accent-600: #E63939;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl border border-gray-200/50 dark:border-gray-700/50;
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none transition-all duration-200;
+  }
+  
+  .shimmer {
+    @apply relative overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-xl;
+  }
+  
+  .shimmer::after {
+    @apply content-[''] absolute top-0 right-0 bottom-0 left-0 transform -translate-x-full;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 2s infinite;
+  }
+}
+
+/* Enhanced Parallax Background */
+.parallax-bg {
+  @apply fixed top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden;
+}
+
+.parallax-image {
+  @apply absolute opacity-[0.15] dark:opacity-[0.08] transition-all duration-700;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: saturate(1.2) contrast(1.1);
+  will-change: transform, opacity;
+}
+
+/* Different sizes for variety */
+.parallax-image:nth-child(odd) {
+  @apply w-[250px] h-[250px];
+}
+
+.parallax-image:nth-child(even) {
+  @apply w-[350px] h-[350px];
+}
+
+/* Positioning and animations */
+.parallax-image:nth-child(1) {
+  top: 15%;
+  left: 10%;
+  animation: floatOne 18s infinite;
+}
+
+.parallax-image:nth-child(2) {
+  top: 65%;
+  left: 85%;
+  animation: floatTwo 22s infinite;
+}
+
+.parallax-image:nth-child(3) {
+  top: 75%;
+  left: 25%;
+  animation: floatThree 20s infinite;
+}
+
+.parallax-image:nth-child(4) {
+  top: 25%;
+  left: 75%;
+  animation: floatFour 24s infinite;
+}
+
+.parallax-image:nth-child(5) {
+  top: 45%;
+  left: 45%;
+  animation: floatFive 26s infinite;
+}
+
+/* Hover effect */
+.parallax-image:hover {
+  @apply opacity-25 dark:opacity-15;
+  transform: scale(1.05);
+  transition: all 0.5s ease-out;
+}
+
+/* Custom animations for each image */
+@keyframes floatOne {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(-45%, -48%) rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: translate(-50%, -52%) rotate(-2deg) scale(1.02);
+  }
+  75% {
+    transform: translate(-55%, -48%) rotate(-7deg) scale(1.07);
+  }
+}
+
+@keyframes floatTwo {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(-53%, -47%) rotate(-5deg) scale(1.04);
+  }
+  66% {
+    transform: translate(-47%, -53%) rotate(7deg) scale(1.06);
+  }
+}
+
+@keyframes floatThree {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  40% {
+    transform: translate(-48%, -45%) rotate(8deg) scale(1.08);
+  }
+  80% {
+    transform: translate(-52%, -55%) rotate(-4deg) scale(1.03);
+  }
+}
+
+@keyframes floatFour {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  30% {
+    transform: translate(-45%, -55%) rotate(-6deg) scale(1.06);
+  }
+  60% {
+    transform: translate(-55%, -45%) rotate(4deg) scale(1.04);
+  }
+}
+
+@keyframes floatFive {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  45% {
+    transform: translate(-52%, -48%) rotate(6deg) scale(1.07);
+  }
+  90% {
+    transform: translate(-48%, -52%) rotate(-8deg) scale(1.05);
+  }
+}
+
+/* Blur effect for depth */
+.parallax-blur {
+  @apply fixed inset-0 pointer-events-none;
+  backdrop-filter: blur(80px);
+  z-index: -1;
+}
+
+.aspect-w-16 {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+
+.aspect-w-16 > * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
